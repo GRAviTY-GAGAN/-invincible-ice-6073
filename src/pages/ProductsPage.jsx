@@ -63,8 +63,8 @@ const ProductsPage = ({ searchString }) => {
     sortRef.current.sorting = false;
     setCategory(productCategory);
     fetchAndRender();
-    console.log(category);
-    console.log(sortRef.current.sorting);
+    // console.log(category);
+    // console.log(sortRef.current.sorting);
   }
 
   async function fetchAndRenderSortedData() {
@@ -97,7 +97,7 @@ const ProductsPage = ({ searchString }) => {
   }
 
   async function fetchAndRender() {
-    console.log("entered");
+    // console.log("entered");
     if (gender && category) {
       url = `${url}&gender=${gender}&category=${category}`;
     } else if (gender) {

@@ -12,7 +12,7 @@ function App() {
   const [searchString, setSearchString] = useState();
 
   function handleSearch(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setSearchString(e.target.value);
   }
 

@@ -76,7 +76,7 @@ const Admin = () => {
   async function fetchAndRender() {
     try {
       let data = await getData();
-      console.log(data, "DATA");
+      // console.log(data, "DATA");
       setProductsData(data.reverse());
     } catch (error) {
       console.log(error);

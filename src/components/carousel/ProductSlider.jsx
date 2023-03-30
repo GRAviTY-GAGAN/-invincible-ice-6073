@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard";
 import "./ProductSlider.css";
 
 const ProductSlider = () => {
-  let url = `https://json-server-k4we.onrender.com`;
+  let url = `${process.env.REACT_APP_LOCAL_URL}`;
   let container = document.querySelector(".carousalContainer");
 
   const [productData, setProductsData] = useState([]);
@@ -29,7 +29,7 @@ const ProductSlider = () => {
   async function fetchAndRender() {
     try {
       let data = await getData();
-      console.log(data.data, "slider");
+      // console.log(data.data, "slider");
       setProductsData(data.data);
     } catch (error) {
       console.log(error);
@@ -54,13 +54,17 @@ const ProductSlider = () => {
           cursor: "pointer",
           color: "white",
         }}
-        height={"100%"}
+        height={"50px"}
+        width={"50px"}
+        textAlign="center"
         fontSize={"3xl"}
         zIndex={2}
+        top={"150px"}
+        borderRadius="50%"
         position={"absolute"}
         onClick={handleLeftSwipe}
       >
-        <ChevronLeftIcon position={"relative"} top={"170px"} />
+        <ChevronLeftIcon position={"relative"} top={"0px"} />
       </Box>
       <Box
         _hover={{
@@ -70,17 +74,22 @@ const ProductSlider = () => {
         }}
         fontSize={"3xl"}
         right={"0px"}
+        top={"150px"}
         zIndex={2}
-        height={"100%"}
+        height={"50px"}
+        width={"50px"}
+        borderRadius="50%"
+        textAlign="center"
         position={"absolute"}
         onClick={handleRightSwipe}
       >
-        <ChevronRightIcon position={"relative"} top={"170px"} />
+        <ChevronRightIcon position={"relative"} top={"0px"} />
       </Box>
       <Flex
         className="carousalContainer"
         gap={2}
         overflowX={"scroll"}
+        position="relative"
         overflowY="hidden"
         w={"100%"}
       >
