@@ -21,9 +21,9 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import ProductsContainer from "../components/Admin/ProductsContainer";
 
-// let url = `${process.env.REACT_APP_LOCAL_URL}`;
+let url = `${process.env.REACT_APP_LOCAL_URL}`;
 // let url = `https://shy-blue-gorilla-wear.cyclic.app`;
-let url = `https://json-server-k4we.onrender.com`;
+// let url = `https://json-server-k4we.onrender.com`;
 
 const Admin = () => {
   const [showAddForm, setShowAddForm] = useState(false);

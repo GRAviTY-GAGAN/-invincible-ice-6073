@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
+import SearchContextProvider from "./context/SearchContext";
 
 const theme = extendTheme({
   colors: {
@@ -18,7 +19,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <ChakraProvider theme={theme}>
-      <App />
+      <SearchContextProvider>
+        <App />
+      </SearchContextProvider>
     </ChakraProvider>
   </BrowserRouter>
 );

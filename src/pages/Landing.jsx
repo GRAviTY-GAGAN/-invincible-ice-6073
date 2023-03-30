@@ -14,10 +14,10 @@ import Carousal2 from "../components/carousel/Carousal2";
 const Landing = () => {
   return (
     <Box>
-      <Flex m={2}>
+      <Flex justify={"center"} align="center" m={2}>
         <Box
           mr={{ base: 0, xl: 3 }}
-          w={{ base: 0, lg: 0, xl: "54%", "2xl": "41%" }}
+          w={{ base: 0, lg: 0, xl: "54%", "2xl": "39%" }}
         >
           <Image borderRadius={"10px"} src={image4} />
         </Box>

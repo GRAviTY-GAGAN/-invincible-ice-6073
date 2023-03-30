@@ -78,7 +78,7 @@ const UserAndCart = () => {
               </Flex>
             </Flex>
           </PopoverTrigger>
-          <PopoverContent w={"10rem"} bg={"#333"}>
+          <PopoverContent borderColor="#333" w={"10rem"} bg={"#333"}>
             {/* <PopoverArrow /> */}
             {/* <PopoverHeader>Confirmation!</PopoverHeader> */}
             <PopoverBody borderColor={"#333"}>
