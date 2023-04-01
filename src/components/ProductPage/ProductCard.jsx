@@ -9,11 +9,21 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
+  let navigate = useNavigate();
+
+  function handleSingleProduct(item) {
+    // console.log(item, "GOT ITEM");
+    localStorage.setItem("product", JSON.stringify(item));
+    navigate("/singleProduct");
+  }
+
   return (
-    <Box>
+    <Box onClick={() => handleSingleProduct(item)}>
       <Card
+        cursor={"pointer"}
         minH={{ md: "503px", lg: "420px", "2xl": "394px" }}
         variant={"elevated"}
         maxW="sm"
@@ -32,13 +42,13 @@ const ProductCard = ({ item }) => {
                 ? `${item.name.substring(0, 50)}...`
                 : item.name}
             </Heading>
-            <Flex align={"center"}>
+            <Flex fontWeight={600} align={"center"}>
               <Text fontSize="sm">Rating : </Text>
               <Text ml={1} color="gray" fontSize="sm">
                 {item.rating}
               </Text>
             </Flex>
-            <Text color="red" fontSize="sm">
+            <Text fontWeight={600} color="red" fontSize="sm">
               Rs. {item.price}
             </Text>
           </Stack>

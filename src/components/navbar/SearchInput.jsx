@@ -1,14 +1,27 @@
 import { Button, Flex, Input, Text } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { searchContext } from "../../context/SearchContext";
 
 const SearchInput = () => {
   const { handleSearchString, handleOnSearchBtn } = useContext(searchContext);
+  const location = useLocation();
 
   return (
     <Flex w={{ md: "100%" }} justify={"space-between"}>
-      <Link to={"/products"}>
+      {location.pathname != "/products" ? (
+        <Link to={"/products"}>
+          <Input
+            onChange={(e) => {
+              handleSearchString(e.target.value);
+            }}
+            w={{ base: "100%", lg: "25rem", "2xl": "50rem" }}
+            color="black"
+            borderRightRadius={"0"}
+            bg={"white"}
+          />
+        </Link>
+      ) : (
         <Input
           onChange={(e) => {
             handleSearchString(e.target.value);
@@ -18,7 +31,7 @@ const SearchInput = () => {
           borderRightRadius={"0"}
           bg={"white"}
         />
-      </Link>
+      )}
       <Button
         onClick={() => {
           handleOnSearchBtn();

@@ -28,13 +28,13 @@ const ProductCard = ({ data }) => {
                 ? `${data.name.substring(0, 50)}...`
                 : data.name}
             </Heading>
-            <Flex align={"center"}>
+            <Flex fontWeight={600} align={"center"}>
               <Text fontSize="sm">Rating : </Text>
               <Text ml={1} color="gray" fontSize="sm">
                 {data.rating}
               </Text>
             </Flex>
-            <Text color="red" fontSize="sm">
+            <Text fontWeight={600} color="red" fontSize="sm">
               Rs. {data.price}
             </Text>
           </Stack>

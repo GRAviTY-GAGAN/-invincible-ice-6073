@@ -14,8 +14,11 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserAndCart = () => {
+  const navigate = useNavigate();
+
   return (
     <Flex align={"center"}>
       <Box
@@ -95,8 +98,11 @@ const UserAndCart = () => {
                 fontWeight={500}
                 w={"100%"}
                 bg={"RGBA(255, 255, 255, 0.48)"}
+                onClick={() => {
+                  navigate("/signup");
+                }}
               >
-                Sign out
+                Sign In
               </Button>
             </PopoverBody>
           </PopoverContent>

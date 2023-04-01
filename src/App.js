@@ -8,11 +8,9 @@ import { useState } from "react";
 
 function App() {
   const location = useLocation();
-  // console.log(location);
   const [searchString, setSearchString] = useState();
 
   function handleSearch(e) {
-    // console.log(e.target.value);
     setSearchString(e.target.value);
   }
 
@@ -31,7 +29,11 @@ function App() {
         pb={"3rem"}
         m={6}
       >
-        <Footer />
+        {location.pathname == "/login" || location.pathname == "/signup" ? (
+          ""
+        ) : (
+          <Footer />
+        )}
       </Box>
     </Box>
   );

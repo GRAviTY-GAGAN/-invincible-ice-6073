@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import SearchContextProvider from "./context/SearchContext";
 
@@ -17,13 +17,15 @@ const theme = extendTheme({
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <ChakraProvider theme={theme}>
-      <SearchContextProvider>
-        <App />
-      </SearchContextProvider>
-    </ChakraProvider>
-  </BrowserRouter>
+  <Box bg={"#f7f7f7"}>
+    <BrowserRouter>
+      <ChakraProvider theme={theme}>
+        <SearchContextProvider>
+          <App />
+        </SearchContextProvider>
+      </ChakraProvider>
+    </BrowserRouter>
+  </Box>
 );
 
 // If you want to start measuring performance in your app, pass a function

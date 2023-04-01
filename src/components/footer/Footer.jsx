@@ -10,6 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import footer1 from "../images/footer1.png";
 import footer2 from "../images/footer2.png";
 
@@ -93,6 +94,9 @@ const Footer = () => {
               </Flex>
               <Text color={"RGBA(0, 0, 0, 0.36)"} fontSize={"small"}>
                 Register now to get updates on promotions andcoupons
+              </Text>
+              <Text cursor={"pointer"} color={"black"} fontSize={"small"}>
+                <Link to={"/admin"}>Admin Access</Link>
               </Text>
             </Box>
           </Box>

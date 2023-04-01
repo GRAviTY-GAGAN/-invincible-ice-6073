@@ -14,18 +14,21 @@ import {
   Input,
   Spacer,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import React, { useContext, useState } from "react";
 import SearchInput from "./SearchInput";
 import NavCategory from "./NavCategory";
 import UserAndCart from "./UserAndCart";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { searchContext } from "../../context/SearchContext";
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { handleSearchString, handleOnSearchBtn } = useContext(searchContext);
+
+  const location = useLocation();
 
   return (
     <>
@@ -48,12 +51,30 @@ const Navbar = () => {
           {/* <HamburgerIcon fontSize={"2xl"} onClick={onOpen} /> */}
           {/* <Spacer /> */}
 
-          <Box display={{ base: "none", md: "block" }}>
-            <SearchInput />
-          </Box>
+          {location.pathname == "/signup" || location.pathname == "/login" ? (
+            ""
+          ) : (
+            <Box display={{ base: "none", md: "block" }}>
+              <SearchInput />
+            </Box>
+          )}
           <Spacer />
 
-          <UserAndCart />
+          {location.pathname == "/signup" ? (
+            <motion.div whileHover={{ scale: 1.2 }}>
+              <Text fontSize={"xl"} p={4}>
+                <Link to={"/login"}>Login</Link>
+              </Text>
+            </motion.div>
+          ) : location.pathname == "/login" ? (
+            <motion.div whileHover={{ scale: 1.2 }}>
+              <Text fontSize={"xl"} p={4}>
+                <Link to={"/signup"}>Signup</Link>
+              </Text>
+            </motion.div>
+          ) : (
+            <UserAndCart />
+          )}
           {/* <Spacer /> */}
         </Flex>
         <Box>
@@ -76,35 +97,44 @@ const Navbar = () => {
         </Box>
       </Box>
 
-      <Box display={{ base: "block", md: "none" }}>
-        <Flex p={4} w={{ base: "100%", md: "100%" }} justify={""}>
-          <Link to={"/products"}>
-            <Input
-              onChange={(e) => {
-                handleSearchString(e.target.value);
-              }}
-              w={"100%"}
-              color="black"
-              borderRightRadius={"0"}
-              bg={"white"}
-            />
-          </Link>
-          <Button
-            onClick={handleOnSearchBtn}
-            fontWeight={400}
-            color="white"
-            pl={{ md: 5 }}
-            pr={{ md: 5 }}
-            borderLeftRadius={"0"}
-            _hover={{ background: "#333" }}
-            bg={"#333"}
-            variant="solid"
+      {location.pathname == "/signup" || location.pathname == "/login" ? (
+        ""
+      ) : (
+        <Box display={{ base: "block", md: "none" }}>
+          <Flex
+            m={"auto"}
+            p={4}
+            w={{ base: "100%", md: "100%" }}
+            justify={"center"}
           >
-            <i className="fa-solid fa-magnifying-glass"></i>{" "}
-            <Text ml={2}>Search</Text>
-          </Button>
-        </Flex>
-      </Box>
+            <Link to={"/products"}>
+              <Input
+                onChange={(e) => {
+                  handleSearchString(e.target.value);
+                }}
+                w={"100%"}
+                color="black"
+                borderRightRadius={"0"}
+                bg={"white"}
+              />
+            </Link>
+            <Button
+              onClick={handleOnSearchBtn}
+              fontWeight={400}
+              color="white"
+              pl={{ md: 5 }}
+              pr={{ md: 5 }}
+              borderLeftRadius={"0"}
+              _hover={{ background: "#333" }}
+              bg={"#333"}
+              variant="solid"
+            >
+              <i className="fa-solid fa-magnifying-glass"></i>{" "}
+              <Text ml={2}>Search</Text>
+            </Button>
+          </Flex>
+        </Box>
+      )}
     </>
   );
 };
