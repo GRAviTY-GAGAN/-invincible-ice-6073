@@ -1,18 +1,18 @@
 import {
   Box,
-  FormControl,
-  Input,
-  Heading,
-  Flex,
-  useToast,
-  Spinner,
   Button,
+  Flex,
+  FormControl,
+  Heading,
+  Input,
+  Spinner,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { useContext, useReducer, useState } from "react";
+import React, { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const AdminLogin = () => {
   let url = process.env.REACT_APP_LOCAL_URL;
   let toast = useToast();
   const navigate = useNavigate();
@@ -63,24 +63,19 @@ const Login = () => {
   }
 
   function handleSubmit(e) {
+    console.log(`${url}/admin/${state.id}`);
     e.preventDefault();
     setSpinner(true);
     axios
-      .get(`${url}/users/${state.id}`)
+      .get(`${url}/admin/${state.id}`)
       .then((res) => {
-        if (res.data.pass == state.pass) {
-          callingSuccessToast(
-            "Login Success.",
-            `Welcome back ${res.data.name}.`
-          );
+        console.log(res);
+        if (res.data.password == state.pass) {
+          callingSuccessToast("Login Success.", `Welcome back ${res.data.id}.`);
           setTimeout(() => {
-            navigate("/");
+            navigate("/admin");
           }, 2000);
-          localStorage.setItem("user", res.data.name);
-          // localStorage.setItem(res.data.name, JSON.stringify([]));
-          if (!localStorage.getItem(res.data.name)) {
-            localStorage.setItem(res.data.name, JSON.stringify([]));
-          }
+          localStorage.setItem("admin", "admin");
         } else {
           callingErrorToast(
             "Something went wrong!",
@@ -141,7 +136,7 @@ const Login = () => {
           pb={4}
           fontWeight={600}
         >
-          Login Here
+          Admin Access
         </Heading>
         <Box p={4}>
           <form onSubmit={handleSubmit}>
@@ -150,7 +145,7 @@ const Login = () => {
                 name="id"
                 required
                 placeholder={"Enter your Email"}
-                type="email"
+                type="text"
                 value={id}
                 onChange={handleChange}
               />
@@ -186,4 +181,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

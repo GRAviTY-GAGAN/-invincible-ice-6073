@@ -1,13 +1,32 @@
 {
+  "admin": [
+  {
+    "id": "admin",
+    "password": "admin@1234"
+  },
+  {
+    "id": "admin2",
+    "password": "admin@1234"
+  }
+],
   "existing": [
     {
       "id": "gaganbn1999@gmail.com"
+    },
+    {
+      "id": "tester1@gmail.com"
     }
   ],
   "users": [
     {
       "id": "gaganbn1999@gmail.com",
       "name": "GAGAN",
+      "pass": "1234",
+      "history": []
+    },
+    {
+      "id": "tester1@gmail.com",
+      "name": "Tester",
       "pass": "1234",
       "history": []
     }

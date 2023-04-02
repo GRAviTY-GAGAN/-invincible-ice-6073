@@ -12,43 +12,74 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
   Button,
+  useToast,
 } from "@chakra-ui/react";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { cartLen } from "../../context/CartLengthContext";
 
 const UserAndCart = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const toast = useToast();
+
+  const { initialState, updateInitialState } = useContext(cartLen);
+
+  const [user, setUser] = useState(null);
+  const [cartLength, setCartLength] = useState(0);
+
+  useEffect(() => {
+    setUser(localStorage.getItem("user") || null);
+    // setCartLength(initialState);
+    setCartLength(JSON.parse(localStorage.getItem(user))?.length || 0);
+  }, [user, initialState]);
+
+  useEffect(() => {
+    setCartLength(JSON.parse(localStorage.getItem(user))?.length || 0);
+  });
+
+  function callingWarningToast(title, message) {
+    toast({
+      title: title,
+      description: message,
+      status: "warning",
+      duration: 4000,
+      isClosable: true,
+      position: "top",
+    });
+  }
+
+  if (location.pathname == "/adminLogin") {
+    return "";
+  }
 
   return (
     <Flex align={"center"}>
-      <Box
-        cursor={"pointer"}
-        p={4}
-        // borderLeft={"1px solid RGBA(0, 0, 0, 0.24)"}
-        // borderRight={"1px solid RGBA(0, 0, 0, 0.24)"}
-      >
+      <Box cursor={"pointer"} p={4}>
         <Flex align={"center"}>
           <Text fontSize={{ base: "md", lg: "large" }} mr={2}>
             Cart
           </Text>
           <Box position={"relative"} fontSize={{ base: "small", lg: "large" }}>
-            <Box
-              display="flex"
-              justifyContent="center"
-              alignItems={"center"}
-              top={"-5px"}
-              right="-9px"
-              backgroundColor={"white"}
-              color="black"
-              borderRadius={"50%"}
-              w={"15px"}
-              h={"15px"}
-              fontSize={{ base: "small" }}
-              position={"absolute"}
-            >
-              0
-            </Box>
-            <i className="fa-solid fa-cart-shopping"></i>
+            <Link to={"/cart"}>
+              <Flex
+                display="flex"
+                justifyContent="center"
+                alignItems={"center"}
+                top={"-9px"}
+                right="-12px"
+                backgroundColor={"white"}
+                color="black"
+                borderRadius={"50%"}
+                w={"17px"}
+                h={"17px"}
+                fontSize={{ base: "small" }}
+                position={"absolute"}
+              >
+                {cartLength}
+              </Flex>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </Link>
           </Box>
         </Flex>
       </Box>
@@ -66,7 +97,7 @@ const UserAndCart = () => {
           <PopoverTrigger>
             <Flex align={"center"}>
               <Text fontSize={{ base: "md", lg: "large" }} mr={2}>
-                User
+                {user ? user : "User"}
               </Text>
               <Flex
                 borderRadius={50}
@@ -86,24 +117,51 @@ const UserAndCart = () => {
             {/* <PopoverHeader>Confirmation!</PopoverHeader> */}
             <PopoverBody borderColor={"#333"}>
               <Text pb={2} pt={2}>
-                Hello, user
+                Hello, {user ? user : "User"}
               </Text>
-              <Button
-                _hover={{
-                  background: "RGBA(255, 255, 255, 0.48)",
-                  color: "",
-                  borderTopRadius: "5px",
-                }}
-                variant={"solid"}
-                fontWeight={500}
-                w={"100%"}
-                bg={"RGBA(255, 255, 255, 0.48)"}
-                onClick={() => {
-                  navigate("/signup");
-                }}
-              >
-                Sign In
-              </Button>
+              {!user ? (
+                <Button
+                  _hover={{
+                    background: "RGBA(255, 255, 255, 0.48)",
+                    color: "",
+                    borderTopRadius: "5px",
+                  }}
+                  variant={"solid"}
+                  fontWeight={500}
+                  w={"100%"}
+                  bg={"RGBA(255, 255, 255, 0.48)"}
+                  onClick={() => {
+                    navigate("/signup");
+                  }}
+                >
+                  Sign In
+                </Button>
+              ) : (
+                <Button
+                  _hover={{
+                    background: "RGBA(255, 255, 255, 0.48)",
+                    color: "",
+                    borderTopRadius: "5px",
+                  }}
+                  variant={"solid"}
+                  fontWeight={500}
+                  w={"100%"}
+                  bg={"RGBA(255, 255, 255, 0.48)"}
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    setUser(null);
+                    callingWarningToast(
+                      "Logged Out",
+                      "Thankyou for shopping with us."
+                    );
+                    updateInitialState();
+                    setCartLength(0);
+                    navigate("/");
+                  }}
+                >
+                  Sign Out
+                </Button>
+              )}
             </PopoverBody>
           </PopoverContent>
         </Box>

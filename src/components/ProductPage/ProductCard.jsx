@@ -15,7 +15,6 @@ const ProductCard = ({ item }) => {
   let navigate = useNavigate();
 
   function handleSingleProduct(item) {
-    // console.log(item, "GOT ITEM");
     localStorage.setItem("product", JSON.stringify(item));
     navigate("/singleProduct");
   }

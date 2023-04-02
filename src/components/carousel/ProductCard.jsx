@@ -10,11 +10,24 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ data }) => {
+  const navigate = useNavigate();
+
+  function handleSingleProduct(item) {
+    localStorage.setItem("product", JSON.stringify(item));
+    navigate("/singleProduct");
+  }
+
   return (
     <motion.div whileHover={{ scale: 1.2, zIndex: 1, cursor: "pointer" }}>
-      <Card variant={"elevated"} height={"100%"} minW={"230px"}>
+      <Card
+        onClick={() => handleSingleProduct(data)}
+        variant={"elevated"}
+        height={"100%"}
+        minW={"230px"}
+      >
         <CardBody>
           <Image
             maxHeight={{ base: "402px", md: "373px", lg: "276px" }}

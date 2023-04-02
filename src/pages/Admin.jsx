@@ -14,10 +14,11 @@ import {
   Spinner,
   Center,
   Text,
+  Tooltip,
 } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useReducer, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "../App.css";
 import ProductsContainer from "../components/Admin/ProductsContainer";
 
@@ -26,6 +27,7 @@ let url = `${process.env.REACT_APP_LOCAL_URL}`;
 // let url = `https://json-server-k4we.onrender.com`;
 
 const Admin = () => {
+  const [out, setOut] = useState(false);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [spinner, setSpinner] = useState(false);
@@ -142,7 +144,6 @@ const Admin = () => {
 
   function handleEditProduct(e) {
     e.preventDefault();
-    console.log(editData);
     setSpinner(true);
     axios
       .put(`${url}/products/${editData.id}`, editData)
@@ -159,7 +160,16 @@ const Admin = () => {
       });
   }
 
+  function handleLogout() {
+    localStorage.removeItem("admin");
+    setOut(true);
+  }
+
   const { name, price, rating, gender, category, image } = state;
+
+  if (out) {
+    return <Navigate to={"/adminLogin"} />;
+  }
 
   return (
     <>
@@ -189,8 +199,11 @@ const Admin = () => {
               fontSize={{ base: "xl", lg: "2xl" }}
               ref={headingRef}
               fontWeight={400}
+              onClick={handleLogout}
             >
-              ADMIN
+              <Tooltip label="Click to log out" aria-label="A tooltip">
+                ADMIN
+              </Tooltip>
             </Heading>
           </Flex>
         </Flex>

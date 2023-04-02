@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Box, ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter } from "react-router-dom";
 import SearchContextProvider from "./context/SearchContext";
+import CartLengthContext from "./context/CartLengthContext";
 
 const theme = extendTheme({
   colors: {
@@ -19,11 +20,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Box bg={"#f7f7f7"}>
     <BrowserRouter>
-      <ChakraProvider theme={theme}>
-        <SearchContextProvider>
-          <App />
-        </SearchContextProvider>
-      </ChakraProvider>
+      <CartLengthContext>
+        <ChakraProvider theme={theme}>
+          <SearchContextProvider>
+            <App />
+          </SearchContextProvider>
+        </ChakraProvider>
+      </CartLengthContext>
     </BrowserRouter>
   </Box>
 );

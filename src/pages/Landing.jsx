@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import "../App.css";
 import Carousel1 from "../components/carousel/Carousel1";
 import image4 from "../components/images/snapdeal-carousal-40.jpeg";

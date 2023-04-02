@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SearchInput from "./SearchInput";
 import NavCategory from "./NavCategory";
 import UserAndCart from "./UserAndCart";
@@ -40,7 +40,7 @@ const Navbar = () => {
       >
         <Flex align={"center"}>
           <Link to={"/"}>
-            <Flex>
+            <Flex p={4}>
               <Text mr={2} fontSize={{ base: "20px", lg: "2xl" }}>
                 <i className="fa-solid fa-box-open"></i>
               </Text>
@@ -51,7 +51,9 @@ const Navbar = () => {
           {/* <HamburgerIcon fontSize={"2xl"} onClick={onOpen} /> */}
           {/* <Spacer /> */}
 
-          {location.pathname == "/signup" || location.pathname == "/login" ? (
+          {location.pathname == "/signup" ||
+          location.pathname == "/login" ||
+          location.pathname == "/adminLogin" ? (
             ""
           ) : (
             <Box display={{ base: "none", md: "block" }}>
@@ -97,7 +99,9 @@ const Navbar = () => {
         </Box>
       </Box>
 
-      {location.pathname == "/signup" || location.pathname == "/login" ? (
+      {location.pathname == "/signup" ||
+      location.pathname == "/login" ||
+      location.pathname == "/adminLogin" ? (
         ""
       ) : (
         <Box display={{ base: "block", md: "none" }}>

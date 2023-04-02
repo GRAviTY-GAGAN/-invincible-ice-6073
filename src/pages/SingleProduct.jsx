@@ -2,31 +2,130 @@ import {
   Box,
   Button,
   Flex,
-  HStack,
   Heading,
   Image,
   Text,
-  VStack,
   useRadioGroup,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RadioCard from "../components/SingleProduct/RadioCard";
+import { cartLen } from "../context/CartLengthContext";
+import { useNavigate } from "react-router-dom";
 
 const SingleProduct = () => {
-  let product = JSON.parse(localStorage.getItem("product")) || null;
+  // let product = JSON.parse(localStorage.getItem("product")) || null;
+  const [product, setProduct] = useState(
+    JSON.parse(localStorage.getItem("product")) || null
+  );
 
-  console.log(product, "PROD");
+  const { updateInitialState } = useContext(cartLen);
+
+  const navigate = useNavigate();
 
   const options = ["S", "M", "L", "XL", "2XL"];
   const [productSize, setProductSize] = useState("");
+  const toast = useToast();
+  let user = localStorage.getItem("user");
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem(user)));
+  // JSON.parse(localStorage.getItem(user)) || []
 
-  console.log(productSize);
+  useEffect(() => {
+    localStorage.setItem(user, JSON.stringify(cart));
+    updateInitialState();
+  }, [cart]);
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: "framework",
     defaultValue: "react",
     onChange: setProductSize,
   });
+
+  function callingErrorToast(title, message) {
+    toast({
+      title: title,
+      description: message,
+      status: "error",
+      duration: 3000,
+      isClosable: true,
+      position: "top",
+    });
+  }
+
+  function callingSuccessToast(title, message) {
+    toast({
+      title: title,
+      description: message,
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+      position: "top",
+    });
+  }
+
+  function handleBuyNow() {
+    let productExists = false;
+
+    productExists = cart.some((item) => item.id == product.id);
+
+    if (!user) {
+      callingErrorToast("Login required!", "Please Login first.");
+    } else if (!productSize) {
+      callingErrorToast(
+        "Product size not selected!",
+        "Please select the product size and then try adding to cart."
+      );
+    } else if (productExists) {
+      callingErrorToast(
+        "Product Already in Cart!",
+        "If you want to change the quantity of product go to cart."
+      );
+    } else {
+      // cart.push({ ...product, size: productSize, Qty: 1 });
+      setCart([...cart, { ...product, size: productSize, Qty: 1 }]);
+      localStorage.setItem(user, JSON.stringify(cart));
+      callingSuccessToast("Product Added", "");
+
+      setTimeout(() => {
+        navigate("/cart");
+      }, 1);
+    }
+  }
+
+  function handleAddToCart() {
+    let productExists = false;
+
+    productExists = cart.some((item) => item.id == product.id);
+
+    if (!user) {
+      callingErrorToast("Login required!", "Please Login first.");
+    } else if (!productSize) {
+      callingErrorToast(
+        "Product size not selected!",
+        "Please select the product size and then try adding to cart."
+      );
+    } else if (productExists) {
+      callingErrorToast(
+        "Product Already in Cart!",
+        "If you want to change the quantity of product go to cart."
+      );
+    } else {
+      setCart([...cart, { ...product, size: productSize, Qty: 1 }]);
+      // console.log(cart);
+      localStorage.setItem(user, JSON.stringify(cart));
+      callingSuccessToast("Product Added", "");
+      updateInitialState();
+      setTimeout(() => {
+        navigate("/products");
+      }, 1);
+    }
+  }
+
+  // function handleA(product) {
+  //   setCart([...cart, { ...product, Qty: 1, size: productSize }]);
+
+  //   console.log(cart);
+  // }
 
   const group = getRootProps();
   return (
@@ -93,6 +192,7 @@ const SingleProduct = () => {
           </Flex>
           <Box>
             <Button
+              onClick={() => handleAddToCart(product)}
               pt={"1px"}
               fontWeight={500}
               _hover={{
@@ -104,9 +204,10 @@ const SingleProduct = () => {
               bg="#333"
               mr={4}
             >
-              ADD TO CART{" "}
+              ADD TO CART
             </Button>
             <Button
+              onClick={handleBuyNow}
               _hover={{
                 backgroundColor: "brand.100",
                 color: "white",

@@ -96,7 +96,7 @@ const Footer = () => {
                 Register now to get updates on promotions andcoupons
               </Text>
               <Text cursor={"pointer"} color={"black"} fontSize={"small"}>
-                <Link to={"/admin"}>Admin Access</Link>
+                <Link to={"/adminLogin"}>Admin Access</Link>
               </Text>
             </Box>
           </Box>
