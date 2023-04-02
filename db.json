@@ -1,14 +1,14 @@
 {
   "admin": [
-  {
-    "id": "admin",
-    "password": "admin@1234"
-  },
-  {
-    "id": "admin2",
-    "password": "admin@1234"
-  }
-],
+    {
+      "id": "admin",
+      "password": "admin@1234"
+    },
+    {
+      "id": "admin2",
+      "password": "admin@1234"
+    }
+  ],
   "existing": [
     {
       "id": "gaganbn1999@gmail.com"
@@ -430,8 +430,8 @@
     },
     {
       "name": "Joley Poley Ethnic Wear Half Plate Cotton Kurta with Pyjama",
-      "price": 4.6,
-      "rating": 599,
+      "price": "599",
+      "rating": "4.6",
       "gender": "Boys",
       "category": "Dress",
       "image": "https://n1.sdlcdn.com/imgs/k/i/4/Joley-Poley-Ethnic-Wear-Half-SDL998849137-1-1e45b.jpg",
@@ -556,8 +556,8 @@
     },
     {
       "name": "Pichkari - Multicolor Cotton Blend Girls Top With Skirt",
-      "price": 5,
-      "rating": 359,
+      "price": "359",
+      "rating": "5",
       "gender": "Girls",
       "category": "Dress",
       "image": "https://n3.sdlcdn.com/imgs/k/l/i/Pichkari-Multicolor-Cotton-Blend-Girls-SDL980915197-1-06e53.jpg",

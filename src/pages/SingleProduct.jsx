@@ -95,7 +95,9 @@ const SingleProduct = () => {
   function handleAddToCart() {
     let productExists = false;
 
-    productExists = cart.some((item) => item.id == product.id);
+    if (user) {
+      productExists = cart.some((item) => item.id == product.id);
+    }
 
     if (!user) {
       callingErrorToast("Login required!", "Please Login first.");
