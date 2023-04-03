@@ -15,6 +15,9 @@
     },
     {
       "id": "tester1@gmail.com"
+    },
+    {
+      "id": "max@gmail.com"
     }
   ],
   "users": [
@@ -22,13 +25,144 @@
       "id": "gaganbn1999@gmail.com",
       "name": "GAGAN",
       "pass": "1234",
-      "history": []
+      "history": [
+        {
+          "date": "April 3rd 2023, 9:21:26 am",
+          "orderTotal": 1495,
+          "prducts": [
+            {
+              "name": "David Miller White Dial Tan Brown PU Strap Men's Watch - DMRCM4C",
+              "price": 299,
+              "rating": 2,
+              "gender": "Mens",
+              "category": "Accessories",
+              "image": "https://n3.sdlcdn.com/imgs/j/p/k/David-Miller-White-Dial-Tan-SDL580697508-1-fe766.jpg",
+              "id": 9,
+              "size": "M",
+              "Qty": 2
+            },
+            {
+              "name": "Joy Activated Charcoal Face Wash (Pack of 2X150 ml)",
+              "price": 299,
+              "rating": 3.9,
+              "gender": "Mens",
+              "category": "Accessories",
+              "image": "https://n2.sdlcdn.com/imgs/k/h/o/Joy-Daily-Use-Face-Wash-SDL331317751-1-dd6d6.jpg",
+              "id": 27,
+              "size": "S",
+              "Qty": 2
+            },
+            {
+              "name": "Redux Digital Sports Shockproof Multi-Functional Red Strap Watch for Boys & Kids",
+              "price": 299,
+              "rating": 4.2,
+              "gender": "Boys",
+              "category": "Accessories",
+              "image": "https://n4.sdlcdn.com/imgs/j/u/n/Redux-Digital-Sports-Shockproof-Multi-SDL829672733-1-3cac3.jpg",
+              "id": 41,
+              "size": "M",
+              "Qty": 1
+            }
+          ]
+        },
+        {
+          "date": "April 3rd 2023, 8:47:43 am",
+          "orderTotal": 1898,
+          "prducts": [
+            {
+              "name": "GIYSI - Black Polyester Men's Trackpants ( Pack of 1 )",
+              "price": 399,
+              "rating": 4,
+              "gender": "Mens",
+              "category": "Bottom",
+              "image": "https://n2.sdlcdn.com/imgs/k/j/s/GIYSI-Black-Polyester-Men-s-SDL982045463-1-1f0f7.jpg",
+              "id": 2,
+              "size": "M",
+              "Qty": 1
+            },
+            {
+              "name": "Chkokko - Charcoal Fleece Regular Fit Men's Tracksuit ( Pack of 1 )",
+              "price": 1499,
+              "rating": 3,
+              "gender": "Mens",
+              "category": "Dress",
+              "image": "https://n1.sdlcdn.com/imgs/k/l/k/Chkokko-Charcoal-Fleece-Regular-Fit-SDL192723630-1-161eb.jpg",
+              "id": 29,
+              "size": "L",
+              "Qty": 1
+            }
+          ]
+        },
+        {
+          "date": "April 3rd 2023, 8:36:23 am",
+          "orderTotal": 2954,
+          "prducts": [
+            {
+              "name": "Mojua - Pink Cotton Boy's T-Shirt ( Pack of 2 )",
+              "price": 519,
+              "rating": 4.2,
+              "gender": "Boys",
+              "category": "Top",
+              "image": "https://n2.sdlcdn.com/imgs/k/i/x/Mojua-Pink-Cotton-Boy-s-SDL647997574-1-9a8a6.jpg",
+              "id": 4,
+              "size": "M",
+              "Qty": 5
+            },
+            {
+              "name": "Veirdo - Green Cotton Regular Fit Men's T-Shirt ( Pack of 1 )",
+              "price": 359,
+              "rating": 4,
+              "gender": "Mens",
+              "category": "Top",
+              "image": "https://n2.sdlcdn.com/imgs/k/e/u/Veirdo-100-Cotton-Regular-Fit-SDL302182620-1-f0fac.jpg",
+              "id": 1,
+              "size": "M",
+              "Qty": 1
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "tester1@gmail.com",
       "name": "Tester",
       "pass": "1234",
       "history": []
+    },
+    {
+      "id": "max@gmail.com",
+      "name": "Max",
+      "pass": "1234",
+      "history": [
+        {
+          "date": "April 3rd 2023, 10:07:23 am",
+          "orderTotal": 874,
+          "prducts": [
+            {
+              "name": "David Miller White Dial Tan Brown PU Strap Men's Watch - DMRCM4C",
+              "price": 299,
+              "rating": 2,
+              "gender": "Mens",
+              "category": "Accessories",
+              "image": "https://n3.sdlcdn.com/imgs/j/p/k/David-Miller-White-Dial-Tan-SDL580697508-1-fe766.jpg",
+              "id": 9,
+              "size": "S",
+              "Qty": 1
+            },
+            {
+              "name": "Dillinger - Pink 100% Cotton Slim Fit Men's Casual Shirt",
+              "price": 575,
+              "rating": 4.5,
+              "gender": "Mens",
+              "category": "Top",
+              "image": "https://n3.sdlcdn.com/imgs/k/l/e/Dillinger-Pink-100-Cotton-Slim-SDL242277351-1-8e841.jpg",
+              "id": 35,
+              "size": "M",
+              "Qty": 1
+            }
+          ]
+        }
+      ]
     }
   ],
   "products": [

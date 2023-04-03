@@ -3,14 +3,19 @@ import React, { useContext, useEffect, useState } from "react";
 import CartCard from "../components/Cart/CartCard";
 import { Navigate, useNavigate } from "react-router-dom";
 import { cartLen } from "../context/CartLengthContext";
+import axios from "axios";
+import moment from "moment/moment";
 
 const Cart = () => {
-  //   let user = localStorage.getItem("user");
+  let url = process.env.REACT_APP_LOCAL_URL;
+  let UID = localStorage.getItem("userID");
+
   const navigate = useNavigate();
   const toast = useToast();
   const [user, setUser] = useState(localStorage.getItem("user"));
   const [totalPrice, setTotalPrice] = useState(0);
   const [purchased, setPurchased] = useState(false);
+  const [history, setHistory] = useState([]);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem(user)) || []
   );
@@ -69,19 +74,49 @@ const Cart = () => {
   }
 
   function handleBuyNow() {
-    setCart([]);
-    toast({
-      title: "Order Placed.",
-      description: `${user} thankyou for shooping with us. Your order has been successfully placed.`,
-      status: "success",
-      duration: 4000,
-      isClosable: true,
-      position: "top",
-    });
-    localStorage.setItem(user, JSON.stringify([]));
-    updateInitialState();
-    // navigate("/");
-    setPurchased(true);
+    axios
+      .get(`${url}/users/${UID}`)
+      .then((res) => {
+        // console.log(res);
+        setHistory(res.data);
+        // console.log(history);
+        updateHistory();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function updateHistory() {
+    let date = moment().format("MMMM Do YYYY, h:mm:ss a");
+    let historyObj = {
+      date: date,
+      orderTotal: totalPrice,
+      prducts: [...cart],
+    };
+    history.history.unshift(historyObj);
+    // console.log(history);
+    axios
+      .patch(`${url}/users/${UID}`, history)
+      .then((res) => {
+        // console.log(res);
+        setCart([]);
+        toast({
+          title: "Order Placed.",
+          description: `${user} thankyou for shooping with us. Your order has been successfully placed.`,
+          status: "success",
+          duration: 4000,
+          isClosable: true,
+          position: "top",
+        });
+        localStorage.setItem(user, JSON.stringify([]));
+        updateInitialState();
+        // navigate("/");
+        setPurchased(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   if (purchased) {

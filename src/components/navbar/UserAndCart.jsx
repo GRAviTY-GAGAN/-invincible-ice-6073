@@ -17,6 +17,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { cartLen } from "../../context/CartLengthContext";
+import { motion, transform } from "framer-motion";
 
 const UserAndCart = () => {
   const navigate = useNavigate();
@@ -99,6 +100,7 @@ const UserAndCart = () => {
               <Text fontSize={{ base: "md", lg: "large" }} mr={2}>
                 {user ? user : "User"}
               </Text>
+
               <Flex
                 borderRadius={50}
                 justify={"center"}
@@ -116,9 +118,34 @@ const UserAndCart = () => {
             {/* <PopoverArrow /> */}
             {/* <PopoverHeader>Confirmation!</PopoverHeader> */}
             <PopoverBody borderColor={"#333"}>
-              <Text pb={2} pt={2}>
-                Hello, {user ? user : "User"}
-              </Text>
+              <Box
+                _hover={{
+                  backgroundColor: "RGBA(255, 255, 255, 0.24)",
+                  borderRadius: "6px",
+                }}
+                pb={2}
+                pt={2}
+                mb={"2px"}
+                mt={"2px"}
+              >
+                <motion.div whileHover={{ translateX: "10px" }}>
+                  Hello, {user ? user : "User"}
+                </motion.div>
+              </Box>
+              <Box
+                _hover={{
+                  backgroundColor: "RGBA(255, 255, 255, 0.24)",
+                  borderRadius: "6px",
+                }}
+                pb={2}
+                pt={2}
+                mb={"2px"}
+                mt={"2px"}
+              >
+                <motion.div whileHover={{ translateX: "10px" }}>
+                  <Link to={"/orders"}>Orders</Link>
+                </motion.div>
+              </Box>
               {!user ? (
                 <Button
                   _hover={{
@@ -134,7 +161,10 @@ const UserAndCart = () => {
                     navigate("/signup");
                   }}
                 >
-                  Sign In
+                  {" "}
+                  <motion.div whileHover={{ fontSize: "large" }}>
+                    Sign In
+                  </motion.div>
                 </Button>
               ) : (
                 <Button
@@ -159,7 +189,9 @@ const UserAndCart = () => {
                     navigate("/");
                   }}
                 >
-                  Sign Out
+                  <motion.div whileHover={{ fontSize: "large" }}>
+                    Sign Out
+                  </motion.div>
                 </Button>
               )}
             </PopoverBody>

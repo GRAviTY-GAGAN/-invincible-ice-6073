@@ -11,6 +11,7 @@ import Cart from "../pages/Cart";
 import PrivateRoute from "./PrivateRoute";
 import AdminLogin from "../pages/AdminLogin";
 import AdminPrivateRoute from "./AdminPrivateRoute";
+import OrderHistory from "../pages/OrderHistory";
 
 const AllRoutes = ({ searchString }) => {
   return (
@@ -38,6 +39,14 @@ const AllRoutes = ({ searchString }) => {
           element={
             <PrivateRoute>
               <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <OrderHistory />
             </PrivateRoute>
           }
         />

@@ -81,6 +81,7 @@ const Login = () => {
           if (!localStorage.getItem(res.data.name)) {
             localStorage.setItem(res.data.name, JSON.stringify([]));
           }
+          localStorage.setItem("userID", res.data.id);
         } else {
           callingErrorToast(
             "Something went wrong!",
