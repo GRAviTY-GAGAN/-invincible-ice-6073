@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Heading, Text, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Spinner,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import CartCard from "../components/Cart/CartCard";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -12,6 +20,7 @@ const Cart = () => {
 
   const navigate = useNavigate();
   const toast = useToast();
+  const [spinner, setSpinner] = useState(false);
   const [user, setUser] = useState(localStorage.getItem("user"));
   const [totalPrice, setTotalPrice] = useState(0);
   const [purchased, setPurchased] = useState(false);
@@ -74,27 +83,29 @@ const Cart = () => {
   }
 
   function handleBuyNow() {
+    setSpinner(true);
     axios
       .get(`${url}/users/${UID}`)
       .then((res) => {
         // console.log(res);
         setHistory(res.data);
-        // console.log(history);
-        updateHistory();
+        updateHistory(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function updateHistory() {
+  function updateHistory(data) {
+    setHistory([...data.history]);
     let date = moment().format("MMMM Do YYYY, h:mm:ss a");
     let historyObj = {
       date: date,
       orderTotal: totalPrice,
       prducts: [...cart],
     };
-    history.history.unshift(historyObj);
+    // history.history.unshift(historyObj);
+    history.unshift(historyObj);
     // console.log(history);
     axios
       .patch(`${url}/users/${UID}`, history)
@@ -116,6 +127,9 @@ const Cart = () => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setSpinner(false);
       });
   }
 
@@ -163,7 +177,7 @@ const Cart = () => {
             bg="brand.100"
             color={"white"}
           >
-            Buy Now
+            {spinner ? <Spinner /> : "Buy Now"}
           </Button>
         </Box>
       </Flex>

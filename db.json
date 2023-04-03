@@ -27,6 +27,23 @@
       "pass": "1234",
       "history": [
         {
+          "date": "April 3rd 2023, 1:08:11 pm",
+          "orderTotal": 299,
+          "prducts": [
+            {
+              "name": "Joy Activated Charcoal Face Wash (Pack of 2X150 ml)",
+              "price": 299,
+              "rating": 3.9,
+              "gender": "Mens",
+              "category": "Accessories",
+              "image": "https://n2.sdlcdn.com/imgs/k/h/o/Joy-Daily-Use-Face-Wash-SDL331317751-1-dd6d6.jpg",
+              "id": 27,
+              "size": "M",
+              "Qty": 1
+            }
+          ]
+        },
+        {
           "date": "April 3rd 2023, 11:06:06 am",
           "orderTotal": 1472,
           "prducts": [
@@ -166,7 +183,36 @@
       "id": "tester1@gmail.com",
       "name": "Tester",
       "pass": "1234",
-      "history": []
+      "history": [
+        {
+          "date": "April 3rd 2023, 11:53:37 am",
+          "orderTotal": 918,
+          "prducts": [
+            {
+              "name": "Mojua - Pink Cotton Boy's T-Shirt ( Pack of 2 )",
+              "price": 519,
+              "rating": 4.2,
+              "gender": "Boys",
+              "category": "Top",
+              "image": "https://n2.sdlcdn.com/imgs/k/i/x/Mojua-Pink-Cotton-Boy-s-SDL647997574-1-9a8a6.jpg",
+              "id": 4,
+              "size": "S",
+              "Qty": 1
+            },
+            {
+              "name": "UrbanMark Men Casual Knitted Eva Slip-Ons Walking Sports Shoes- Dark Gray",
+              "price": 399,
+              "rating": 4.3,
+              "gender": "Mens",
+              "category": "Footware",
+              "image": "https://n4.sdlcdn.com/imgs/k/n/s/UrbanMark-Men-Casual-Knitted-Eva-SDL436263890-1-e399c.jpg",
+              "id": 3,
+              "size": "L",
+              "Qty": 1
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "max@gmail.com",
