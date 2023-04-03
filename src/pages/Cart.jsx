@@ -25,6 +25,7 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [purchased, setPurchased] = useState(false);
   const [history, setHistory] = useState([]);
+  const [buy, setBuy] = useState(false);
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem(user)) || []
   );
@@ -35,6 +36,12 @@ const Cart = () => {
     calculateTotal();
     updateInitialState();
   }, [cart]);
+
+  useEffect(() => {
+    if (buy) {
+      updateHistory();
+    }
+  }, [history]);
 
   function calculateTotal() {
     let price = cart.reduce((acc, item) => {
@@ -83,13 +90,14 @@ const Cart = () => {
   }
 
   function handleBuyNow() {
+    setBuy(true);
     setSpinner(true);
     axios
       .get(`${url}/users/${UID}`)
       .then((res) => {
         // console.log(res);
-        setHistory(res.data);
-        updateHistory(res.data);
+        let data = res.data;
+        setHistory(data);
       })
       .catch((err) => {
         console.log(err);
@@ -97,15 +105,19 @@ const Cart = () => {
   }
 
   function updateHistory(data) {
-    setHistory([...data.history]);
+    // console.log(data);
+    // setHistory((prev) => {
+    //   prev = data;
+    //   return prev;
+    // });
     let date = moment().format("MMMM Do YYYY, h:mm:ss a");
     let historyObj = {
       date: date,
       orderTotal: totalPrice,
       prducts: [...cart],
     };
-    // history.history.unshift(historyObj);
-    history.unshift(historyObj);
+    history?.history?.unshift(historyObj);
+    // history.unshift(historyObj);
     // console.log(history);
     axios
       .patch(`${url}/users/${UID}`, history)
@@ -130,6 +142,7 @@ const Cart = () => {
       })
       .finally(() => {
         setSpinner(false);
+        setBuy(false);
       });
   }
 
