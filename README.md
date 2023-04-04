@@ -4,7 +4,7 @@ RCT101 Construct Week Project
 
 # Project Details
 
-This is a solo project completed within 5 days. This Project is a clone of Snapdeal where user can search for required products and buy the required products. Below are some screenshots of the project. i have also hosted the project at netlify so that you guys can have a look at it. Also the entire webapp is responesive.
+This is a solo project built with react, chakra UI and completed within 5 days. This Project is a clone of Snapdeal where user can search for required products and buy the required products. Below are some screenshots of the project. i have also hosted the project at netlify so that you guys can have a look at it. Also the entire webapp is responesive.
 
 # Netlify Link
 
